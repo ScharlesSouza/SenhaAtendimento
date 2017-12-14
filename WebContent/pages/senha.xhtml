@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+<ui:define name="conteudo">
+
+<f:view>
+<!-- <center> -->
+
+	<h:form id="form">
+		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+		
+	    	
+	    <p:panel id="panel" header="Emissão de Senha">
+	    	
+			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
+			
+				
+				<p:outputLabel for="SelectAreaAtendimento" value="Area de Atendimento:"/>
+				<p:selectOneMenu id="SelectAreaAtendimento" value="#{senhaController.entity.area}" style="width:125px">
+            		<f:converter converterId="areaAtendimentoConverter"/>
+	                <f:selectItem  itemLabel="Selecione uma area de atendimento ..." />
+            		<f:selectItems value="#{areaAtendimentoController.listaAreaAtendimento}" var="o" itemLabel="#{o.nomeArea}" itemValue="#{o}"/>  
+	            	
+        		</p:selectOneMenu>
+        		
+				<p:selectManyCheckbox id="prioritario" value="#{checkboxView.selectedConsoles}">
+        			<f:selectItem itemLabel="Prioridade" itemValue="1" />
+        		</p:selectManyCheckbox>
+				
+			</p:panelGrid>
+			
+			<p:commandButton value="Gerar Senha"
+			actionListener="#{senhaController.insert}" 
+				disabled="#{senhaController.entity.id != null}"
+				process="panel" update="form" />
+
+		</p:panel>	
+		
+		<br/><p:separator id="separator" /><br/>
+
+		<p:dataTable id="dataTable" value="#{senhaController.listaSenha}" var="objeto" widgetVar="dataTableWV" >	
+			<p:column>
+				<f:facet name="header">Id</f:facet>
+	    				#{objeto.id}
+	    		</p:column>
+			<p:column>
+				<f:facet name="header">Numero</f:facet>
+	    				#{objeto.numero}
+	    		</p:column>
+			<p:column >
+				<f:facet name="header">Data</f:facet>
+	    				#{objeto.datacadastro}
+	    		</p:column>
+		
+			<p:column >
+				<f:facet name="header">Area</f:facet>
+	    				#{objeto.area.nome}
+	    		</p:column>
+			<p:column >
+				<f:facet name="header">Ação</f:facet>
+				<p:commandButton value="Editar" update="form" icon="fa fa-bug" >
+					<f:setPropertyActionListener
+						target="#{senhaController.entity}" value="#{objeto}" />
+				</p:commandButton>
+			</p:column>
+	    		
+		</p:dataTable>
+		
+		
+	</h:form>
+<!-- </center> -->	
+</f:view>
+
+</ui:define>
+</ui:composition>

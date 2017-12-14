@@ -1,0 +1,92 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+<ui:define name="conteudo">
+
+<f:view>
+<center>
+
+	<h:form id="form">
+		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+		
+	    	
+	    	<p:panel id="panel" header="Cadastro Area de Atendimento">
+			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
+				<p:outputLabel value="Sigla:" />
+				<p:inputText value="#{areaAtendimentoController.entity.siglaArea}" />
+	
+				<p:outputLabel value="Nome:" />
+				<p:inputText value="#{areaAtendimentoController.entity.nomeArea}" style="width:215px;"/>
+				
+				<p:outputLabel value="Descrição:" />
+				<p:inputTextarea value="#{areaAtendimentoController.entity.descricao}" />
+	
+				
+				
+				
+								
+				
+	
+			</p:panelGrid>
+
+			<br/>
+			
+			<p:commandButton value="Incluir" 
+				actionListener="#{areaAtendimentoController.insert}" 
+				disabled="#{areaAtendimentoController.entity.id != null}"
+				process="panel" update="form" />
+			
+			<p:commandButton value="Alterar" 
+				actionListener="#{areaAtendimentoController.update}" 
+				disabled="#{areaAtendimentoController.entity.id == null}"
+				process="panel" update="form" />
+	
+			<p:commandButton value="Excluir" 
+				actionListener="#{areaAtendimentoController.delete}" 
+				disabled="#{areaAtendimentoController.entity.id == null}"	
+				process="panel" update="form" />
+			
+			<p:commandButton value="Limpar" icon="" 
+				actionListener="#{areaAtendimentoController.clean}" 
+				process="panel" update="form" />
+				
+		</p:panel>
+					
+		<br/><p:separator id="separator" /><br/>
+
+		<p:dataTable id="dataTable" value="#{areaAtendimentoController.listaAreaAtendimento}" var="objeto" widgetVar="dataTableWV" >	
+			<p:column>
+				<f:facet name="header">Id</f:facet>
+	    				#{objeto.id}
+	    		</p:column>
+			<p:column>
+				<f:facet name="header">Nome Area</f:facet>
+	    				#{objeto.nomeArea}
+	    		</p:column>
+			<p:column >
+				<f:facet name="header">Sigla</f:facet>
+	    				#{objeto.siglaArea}
+	    		</p:column>
+			<p:column >
+				<f:facet name="header">Descrição</f:facet>
+	    				#{objeto.descricao}
+	    		</p:column>
+			<p:column >
+				<f:facet name="header">Ação</f:facet>
+				<p:commandButton value="Editar" update="form" icon="fa fa-bug" >
+					<f:setPropertyActionListener
+						target="#{areaAtendimentoController.entity}" value="#{objeto}" />
+				</p:commandButton>
+			</p:column>
+	    		
+		</p:dataTable>
+	
+	</h:form>
+</center>	
+</f:view>
+
+</ui:define>
+</ui:composition>

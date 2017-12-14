@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+<ui:define name="conteudo">
+
+<f:view>
+<!-- <center> -->
+
+	<h:form id="form">
+		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+		
+	    	
+	    <p:panel id="panel" header="Atendimento">
+	    	
+			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
+			
+				
+				<p:outputLabel  value="Senha: XZW"/><br/>
+				<p:outputLabel  value="Data/hora"/><br/>
+				<p:outputLabel  value="Area de Atendimento: XZW"/><br/>
+				<p:outputLabel  value="Status:"/><br/>
+				<p:selectOneRadio id="console" value="#{radioView.console}"><font></font>
+            		<f:selectItem itemLabel="Resolvido" itemValue="resolvido" /><font></font>
+            		<f:selectItem itemLabel="Ausente" itemValue="ausente" /><font></font>
+            		<f:selectItem itemLabel="Sem Solução" itemValue="semsolucao" /><font></font>
+            		<f:selectItem itemLabel="Pendente" itemValue="pendente" /><font></font>
+        		</p:selectOneRadio>
+        		
+        		<br/>
+				<p:outputLabel  value="Informações:"/>
+				<p:inputTextarea></p:inputTextarea><br/>
+				
+				
+				<p:commandButton value="Concluir Atendimento" process="panel" update="form" />
+				
+				
+			</p:panelGrid>
+
+		</p:panel>	
+		
+		
+	</h:form>
+<!-- </center> -->	
+</f:view>
+
+</ui:define>
+</ui:composition>

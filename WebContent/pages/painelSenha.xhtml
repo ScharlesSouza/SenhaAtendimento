@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Sistema de Atendimento</title>
+        <style type="text/css">  
+		    .ui-widget {  
+		        font-size: 12px !important;  
+		    }  	
+			.ui-top, .ui-top .ui-layout, .ui-top .ui-layout-bd, .ui-top .ui-layout-unit, .ui-top .ui-layout-unit-content {
+			    background-color: #F1F1F1; 
+			}
+			.autocomplete400, .ui-autocomplete input {
+	 		   width:400px;
+			}	
+			
+		</style>
+		 <h:outputStylesheet name="geral.css"/>
+		 <h:outputStylesheet library="awesome" name="css/font-awesome.css" />  
+    </h:head>
+    <h:body>
+	    <h:form id="form">
+        	<p:poll interval="3" listener="#{counterView.increment}" update="form" />
+	    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+		    <p:graphicImage name="/images/ajaxloading.gif" />
+		</p:dialog>
+		
+        <p:layout id="layout" fullPage="true">
+        
+            
+            	<p:layoutUnit position="north" size="20%" styleClass="ui-top">
+            		<ui:insert name="cabecalho">
+		        		<center><h1>Area Atendimento</h1></center>
+		        	</ui:insert>
+		    	</p:layoutUnit>
+		    	
+		    	<p:layoutUnit position="east" size="34%" styleClass="ui-top">
+		    		<center><h1>Mesa<br/>03</h1></center>
+		    	</p:layoutUnit>
+
+ 		    <p:layoutUnit position="center" style="border: none !important;">
+                   <center><h1>Numero da Senha<br/>A531</h1></center>
+                   
+		    </p:layoutUnit>
+
+		    <p:layoutUnit position="south"  size="20%" styleClass="ui-top" >
+		    		<center>
+		    			<ui:insert name="conteudoRodape">
+                  		<h:outputText value="© 2017 UNITINS - Universidade Estadual do Tocantins. Todos os direitos reservados." />
+                  	</ui:insert>
+                  </center>
+                  
+		    </p:layoutUnit>
+		    
+			    	
+        </p:layout>
+        </h:form>	
+    </h:body>
+</html>

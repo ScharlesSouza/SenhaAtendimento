@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+<ui:define name="conteudo">
+
+<f:view>
+<!-- <center> -->
+
+	<h:form id="form">
+		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+		
+	    	
+	    <p:panel id="panel" header="Chamar Senha">
+	    	
+			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
+			
+				
+				<p:outputLabel  value="Senha Atual: XZW"/><br/>
+				<p:commandButton value="Ausente" process="panel" update="form" />
+				<p:commandButton value="Chamar" process="panel" update="form" />
+				<p:commandButton value="Atender" process="panel" update="form" action="/pages/atendimento.xhtml" />
+				
+				
+				<br/>
+				<p:outputLabel value="Proximos da Fila:" />
+				
+				
+			</p:panelGrid>
+
+		</p:panel>	
+		
+		
+	</h:form>
+<!-- </center> -->	
+</f:view>
+
+</ui:define>
+</ui:composition>

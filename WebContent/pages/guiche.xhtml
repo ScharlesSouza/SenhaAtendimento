@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+<ui:define name="conteudo">
+
+<f:view>
+<!-- <center> -->
+
+	<h:form id="form">
+		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+		
+	    	
+	    <p:panel id="panel" header="Abrir Guichê">
+	    	
+			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
+			
+				
+				<p:outputLabel for="SelectTipoGuiche" value="Tipo de Guichê:"/>
+				<p:selectOneMenu id="SelectTipoGuiche" value="#{selectOneMenuView.console}" style="width:125px">
+            		<f:selectItem itemLabel="Escolha uma opção" itemValue="" />
+            		<f:selectItem itemLabel="Mesa" itemValue="Mesa" />
+            		<f:selectItem itemLabel="Balcao" itemValue="Balcao" />
+            		<f:selectItem itemLabel="Baia" itemValue="Baia" />
+        		</p:selectOneMenu>
+				
+				
+				<p:outputLabel value="Identificador Guichê:" />
+				<p:inputText value="#{UsuarioController.entity.senha}" />
+				
+			</p:panelGrid>
+			
+			<p:commandButton value="Abrir Guichê" process="panel" update="form" />
+
+		</p:panel>	
+		
+		
+	</h:form>
+<!-- </center> -->	
+</f:view>
+
+</ui:define>
+</ui:composition>
